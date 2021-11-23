@@ -21,10 +21,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   // find a single tag by its `id`
   try {
-    const tagId = await Tag.findOne({
+    const tagId = await Tag.findByPk(req.params.id, {
       // be sure to include its associated Product data
       include: [
         {
